@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 import classesCss from "./WordCard.module.scss";
-import { MODE_VOCABULARY, SETTINGS, VOCABULARY_MODE_DIFFICULT, WORD_HARD } from "../../settings/settings";
+import {
+  MODE_VOCABULARY,
+  SETTINGS,
+  VOCABULARY_MODE_DIFFICULT,
+  WORD_HARD,
+} from "../../settings/settings";
 import SoundButton from "../Buttons/SoundButton";
 import FastAverageColor from "fast-average-color";
 import ButtonsBlock from "./ButtonsBlock";
@@ -10,7 +15,7 @@ import { useParams } from "react-router";
 
 const fac = new FastAverageColor();
 
-export default function WordCard({cardInfo}){
+export default function WordCard({ cardInfo }) {
   const {
     optional,
     word,
@@ -29,10 +34,12 @@ export default function WordCard({cardInfo}){
   const [averageColorData, setAverageColorData] = useState(null);
   const [failCounter, setFailedCounter] = useState(0);
   const [successCounter, setSuccessCounter] = useState(0);
-  const {isLogged} = useSelector(store => store.user);
-  const {isTranslateVisible, mode, vocabularyMode} = useSelector(store => store.book)
+  const { isLogged } = useSelector((store) => store.user);
+  const { isTranslateVisible, mode, vocabularyMode } = useSelector(
+    (store) => store.book
+  );
 
-  const {sectionVocabulary} = useParams();
+  const { sectionVocabulary } = useParams();
 
   let notification;
   if (optional?.difficulty === WORD_HARD) {
@@ -44,7 +51,7 @@ export default function WordCard({cardInfo}){
   const audioPlayer = new Audio();
   audioPlayer.volume = 0.5;
 
-  function playAudio(url, phase){
+  function playAudio(url, phase) {
     audioPlayer.src = `${SETTINGS.SERVER}/${url}`;
     audioPlayer.load();
     audioPlayer.play();
@@ -66,7 +73,7 @@ export default function WordCard({cardInfo}){
       return;
     }
 
-    let playNextAudio = function(){
+    let playNextAudio = function () {
       audioPlayer.removeEventListener("ended", playNextAudio);
       playAudio(nextAudio, nextPhase);
     };
@@ -82,48 +89,55 @@ export default function WordCard({cardInfo}){
 
   if (!averageColorData) {
     fac
-    .getColorAsync(`${SETTINGS.SERVER}/${image}`)
-    .then((color) => {
-      setAverageColorData({
-        color: color.rgb,
-        isLight: color.isLight,
+      .getColorAsync(`${SETTINGS.SERVER}/${image}`)
+      .then((color) => {
+        setAverageColorData({
+          color: color.rgb,
+          isLight: color.isLight,
+        });
+      })
+      .catch((e) => {
+        console.log(e);
       });
-    })
-    .catch((e) => {
-      console.log(e);
-    });
   }
 
-  const isWordHard = cardInfo.difficulty === WORD_HARD
-  const isHardMode = mode === MODE_VOCABULARY && vocabularyMode === VOCABULARY_MODE_DIFFICULT
-  const isWordDeleted = cardInfo.optional?.deleted
-  const isShowHardStyle = isWordHard && !isHardMode && !isWordDeleted
+  const isWordHard = cardInfo.difficulty === WORD_HARD;
+  const isHardMode =
+    mode === MODE_VOCABULARY && vocabularyMode === VOCABULARY_MODE_DIFFICULT;
+  const isWordDeleted = cardInfo.optional?.deleted;
+  const isShowHardStyle = isWordHard && !isHardMode && !isWordDeleted;
   return (
     <div
-      style={!isShowHardStyle && !isWordDeleted ? {background: averageColorData?.color || "white"} : null}
-      className={cx(
-        classesCss.Card,
-        {
-          [classesCss.Hard]: isShowHardStyle,
-          [classesCss.Deleted]: isWordDeleted,
-        },
-      )
+      style={
+        !isShowHardStyle && !isWordDeleted
+          ? { background: averageColorData?.color || "white" }
+          : null
       }
+      className={cx(classesCss.Card, {
+        [classesCss.Hard]: isShowHardStyle,
+        [classesCss.Deleted]: isWordDeleted,
+      })}
     >
       <div
         style={{
-          backgroundImage: `${isWordDeleted ? "linear-gradient(black, black)," : ""}
+          backgroundImage: `${
+            isWordDeleted ? "linear-gradient(black, black)," : ""
+          }
                                   url(${SETTINGS.SERVER}/${image})`,
         }}
         className={cx(classesCss.HeaderBlock)}
       >
         <div
           className={classesCss.Overlay}
-          style={!isShowHardStyle && !isWordDeleted ? {
-            background:
-              `linear-gradient(transparent, ${averageColorData?.color})` ||
-              "transparent",
-          } : null}
+          style={
+            !isShowHardStyle && !isWordDeleted
+              ? {
+                  background:
+                    `linear-gradient(transparent, ${averageColorData?.color})` ||
+                    "transparent",
+                }
+              : null
+          }
         >
           {isLogged && (
             <ButtonsBlock
@@ -140,7 +154,7 @@ export default function WordCard({cardInfo}){
               <h3>{word}</h3>
             </div>
             <div className={classesCss.SecondaryBlock}>
-              {isTranslateVisible && (<div>{wordTranslate}</div>)}
+              {isTranslateVisible && <div>{wordTranslate}</div>}
               <div>{transcription}</div>
               <SoundButton
                 onClick={() => playAudio(audio)}
@@ -153,15 +167,18 @@ export default function WordCard({cardInfo}){
       </div>
       <div className={classesCss.CardContent}>
         <div className={classesCss.WordBlock}>
-          <div dangerouslySetInnerHTML={{__html: textMeaning}}/>
           <div
-            dangerouslySetInnerHTML={{__html: textExample}}
+            className={classesCss.Example2}
+            dangerouslySetInnerHTML={{ __html: textMeaning }}
+          />
+          <div
+            dangerouslySetInnerHTML={{ __html: textExample }}
             className={classesCss.Example}
           />
         </div>
         {isTranslateVisible && (
           <div className={classesCss.WordBlock}>
-            <div>{textMeaningTranslate}</div>
+            <div className={classesCss.Example2}>{textMeaningTranslate}</div>
             <div className={classesCss.Example}>{textExampleTranslate}</div>
           </div>
         )}

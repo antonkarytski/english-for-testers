@@ -9,17 +9,26 @@ import {
   SET_CURRENT_PAGE,
   SET_CURRENT_WORDS,
   SET_VOCABULARY_CURRENT_PAGE,
-  SET_VOCABULARY_MODE, SET_VOCABULARY_WORDS,
+  SET_VOCABULARY_MODE,
+  SET_VOCABULARY_WORDS,
   SIGN_IN,
 } from "./types";
-import { MODE_BOOK, SETTINGS, VOCABULARY_MODE_NORMAL } from "../settings/settings";
+import {
+  MODE_BOOK,
+  SETTINGS,
+  VOCABULARY_MODE_NORMAL,
+} from "../settings/settings";
 
-function getInitPagesList(){
-  const initPages = {}
+function getInitPagesList() {
+  const initPages = {};
   for (let i = 0; i < SETTINGS.GROUPS_COUNT; i++) {
-    initPages[i] = [...Object.keys(Array(SETTINGS.PAGES_COUNT).fill(0)).map(index => Number(index))]
+    initPages[i] = [
+      ...Object.keys(Array(SETTINGS.PAGES_COUNT).fill(0)).map((index) =>
+        Number(index)
+      ),
+    ];
   }
-  return initPages
+  return initPages;
 }
 
 const initialBookState = {
@@ -41,37 +50,42 @@ const initialBookState = {
   vocabularyMode: VOCABULARY_MODE_NORMAL,
   vocabularyWords: [],
   vocabularyCurrentPage: 0,
-}
+};
 
-export default function bookReducer(state = initialBookState, {type, payload}){
+export default function bookReducer(
+  state = initialBookState,
+  { type, payload }
+) {
   switch (type) {
     case SET_BOOK_AVAILABLE_PAGES: {
-      const {group, list} = payload
+      const { group, list } = payload;
       return {
         ...state,
         pages: {
           ...state.pagesList,
           [group]: list,
         },
-      }
+      };
     }
     case REMOVE_PAGE_FROM_LIST: {
-      const {group, page} = payload
-      const newPagesList = [...state.pagesList[group]]
+      const { group, page } = payload;
+      const newPagesList = [...state.pagesList[group]];
 
-      function removePage(pageIndex){
-        const pageToRemoveIndex = newPagesList.findIndex(pageNumber => pageNumber === Number(pageIndex))
+      function removePage(pageIndex) {
+        const pageToRemoveIndex = newPagesList.findIndex(
+          (pageNumber) => pageNumber === Number(pageIndex)
+        );
         if (pageToRemoveIndex + 1) {
-          newPagesList.splice(pageToRemoveIndex, 1)
+          newPagesList.splice(pageToRemoveIndex, 1);
         }
       }
 
       if (Number.isInteger(page)) {
-        removePage(page)
+        removePage(page);
       } else if (Array.isArray(page)) {
-        page.forEach(singlePage => {
-          removePage(singlePage)
-        })
+        page.forEach((singlePage) => {
+          removePage(singlePage);
+        });
       }
       return {
         ...state,
@@ -79,68 +93,67 @@ export default function bookReducer(state = initialBookState, {type, payload}){
           ...state.pagesList,
           [group]: newPagesList,
         },
-      }
+      };
     }
 
     case SET_CURRENT_PAGE: {
-      const {page} = payload
-      if (page === state.currentPageIndex) return state
+      const { page } = payload;
+      if (page === state.currentPageIndex) return state;
       return {
         ...state,
         currentPageIndex: page,
-      }
+      };
     }
 
     case SET_CURRENT_GROUP: {
-      const {group} = payload
-      if (group === state.currentGroup) return state
+      const { group } = payload;
+      if (group === state.currentGroup) return state;
       return {
         ...state,
         currentGroup: group,
-      }
+      };
     }
 
     case SET_BOOK_MODE: {
-      const {mode} = payload
-      if (mode === state.mode) return state
-      return {...state, mode}
+      const { mode } = payload;
+      if (mode === state.mode) return state;
+      return { ...state, mode };
     }
 
     case SET_BOOK_TRANSLATE_VISIBLE: {
-      const {visibility} = payload
-      return {...state, isTranslateVisible: visibility}
+      const { visibility } = payload;
+      return { ...state, isTranslateVisible: visibility };
     }
 
     case SET_BOOK_BUTTONS_VISIBLE: {
-      const {visibility} = payload
-      return {...state, isButtonsVisible: visibility}
+      const { visibility } = payload;
+      return { ...state, isButtonsVisible: visibility };
     }
 
     case SET_CURRENT_WORDS: {
-      const {words} = payload
-      return {...state, currentWords: words}
+      const { words } = payload;
+      return { ...state, currentWords: words };
     }
 
     case SET_VOCABULARY_MODE: {
-      const {mode} = payload
-      if (mode === state.vocabularyMode) return state
-      return {...state, vocabularyMode: mode}
+      const { mode } = payload;
+      if (mode === state.vocabularyMode) return state;
+      return { ...state, vocabularyMode: mode };
     }
 
     case SET_VOCABULARY_CURRENT_PAGE: {
-      const {page} = payload
-      if (page === state.vocabularyCurrentPage) return state
-      return {...state, vocabularyCurrentPage: page}
+      const { page } = payload;
+      if (page === state.vocabularyCurrentPage) return state;
+      return { ...state, vocabularyCurrentPage: page };
     }
 
-    case SET_VOCABULARY_WORDS:{
-      const {words} = payload
-      return {...state, vocabularyWords: words}
+    case SET_VOCABULARY_WORDS: {
+      const { words } = payload;
+      return { ...state, vocabularyWords: words };
     }
-
 
     case LOG_OUT: {
-      const {isButtonsVisible, isTranslateVisible} = initialBookState
+      const { isButtonsVisible, isTranslateVisible } = initialBookState;
       return {
         ...state,
         isButtonsVisible,
@@ -149,21 +162,20 @@ export default function bookReducer(state = initialBookState, {type, payload}){
           isButtonsVisible: state.isButtonsVisible,
           isTranslateVisible: state.isTranslateVisible,
         },
-      }
+      };
     }
 
-
     case SIGN_IN: {
-      const {isButtonsVisible, isTranslateVisible} = state.savedUserSettings
+      const { isButtonsVisible, isTranslateVisible } = state.savedUserSettings;
       return {
         ...state,
         isButtonsVisible,
         isTranslateVisible,
-      }
+      };
     }
 
     default: {
-      return state
+      return state;
     }
   }
 }

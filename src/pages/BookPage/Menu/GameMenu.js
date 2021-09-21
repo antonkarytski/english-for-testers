@@ -8,17 +8,23 @@ import { setFirstLetterToCapital } from "../../../helpers/gameUtils";
 import { useSelector } from "react-redux";
 import { MODE_VOCABULARY } from "../../../settings/settings";
 
-export default function GameMenu({className}){
+export default function GameMenu({ className }) {
   const [isOpen, setIsOpen] = useState(false);
-  const {currentWords, mode, vocabularyCurrentPage, vocabularyWords, currentGroup} = useSelector(store => store.book)
+  const {
+    currentWords,
+    mode,
+    vocabularyCurrentPage,
+    vocabularyWords,
+    currentGroup,
+  } = useSelector((store) => store.book);
 
-  const wordsToTransmit = (function(){
-    if(mode === MODE_VOCABULARY) {
-      if(vocabularyWords) return vocabularyWords[vocabularyCurrentPage]
-      return []
+  const wordsToTransmit = (function () {
+    if (mode === MODE_VOCABULARY) {
+      if (vocabularyWords) return vocabularyWords[vocabularyCurrentPage];
+      return [];
     }
-    return currentWords.filter(({optional}) => !optional?.deleted)
-  })()
+    return currentWords.filter(({ optional }) => !optional?.deleted);
+  })();
 
   return (
     <div className={cx(classesCss.GameMenu, className)}>
@@ -28,16 +34,29 @@ export default function GameMenu({className}){
         label={"Тренировка"}
       />
       <div
-        className={cx(classesCss.PopUpMenu, {[classesCss.Active]: isOpen})}
+        className={cx(classesCss.PopUpMenu, { [classesCss.Active]: isOpen })}
       >
         {GAMES_ARRAY.map((game) => {
-          return (
-            <GameButton
-              gameCallValues={{
+          const isError =
+            currentGroup >= 2 ||
+            currentGroup <= 4 ||
+            game.key === "savannah" ||
+            game.key === "sprint";
+
+          const gameCallValue = isError
+            ? null
+            : {
                 words: wordsToTransmit,
                 group: currentGroup,
-                fullWordsSet: mode === MODE_VOCABULARY? vocabularyWords? vocabularyWords.flat() : null : null
-              }}
+                fullWordsSet:
+                  mode === MODE_VOCABULARY && vocabularyWords
+                    ? vocabularyWords.flat()
+                    : null,
+              };
+
+          return (
+            <GameButton
+              gameCallValues={gameCallValue}
               game={game}
               key={game.key}
               className={classesCss.GameLink}
@@ -45,7 +64,7 @@ export default function GameMenu({className}){
                 label: classesCss.GameLabel,
                 link: cx(
                   classesCss.GameLinkWrap,
-                  classesCss[setFirstLetterToCapital(game.key)],
+                  classesCss[setFirstLetterToCapital(game.key)]
                 ),
               }}
             />

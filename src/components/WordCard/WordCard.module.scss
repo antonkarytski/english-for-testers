@@ -182,10 +182,17 @@ $hard-word-color: #fff355;
         box-shadow: 0 20px 0 -19px #333;
       }
 
+      .Example2 {
+        max-height: 40px;
+
+      }
+
       .Example {
         font-size: 0.85em;
         margin-top: 5px;
         font-style: italic;
+        font-family: "Times New Roman";
+
       }
     }
   }

@@ -34,7 +34,7 @@ export default function BookContent({ setTotalValues, setTotalPagesCount }) {
   const { group: urlGroup, page: urlPage = 1 } = useParams();
   const group = checkGroup(urlGroup - 1);
   const page = checkPage(urlPage - 1);
-
+  const [canRender, setCanRender] = useState(false);
 
   useEffect(() => {
     function findUserWord(word) {
@@ -152,9 +152,16 @@ export default function BookContent({ setTotalValues, setTotalPagesCount }) {
     setTotalPagesCount,
   ]);
 
+  useEffect(() => {
+    if (!wordsToRender?.length) return;
+    setTimeout(() => {
+      setCanRender(true);
+    }, 2000);
+  }, [wordsToRender?.length]);
+
   return (
     <div className={cx(classesCss.BookContent)}>
-      {wordsToRender?.length
+      {wordsToRender?.length && canRender
         ? wordsToRender.map((word) => {
             if (!word.optional?.deleted) {
               return (
