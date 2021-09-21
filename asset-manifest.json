@@ -1,27 +1,27 @@
 {
   "files": {
-    "main.css": "/english-fot-testers/static/css/main.6b1f1476.chunk.css",
-    "main.js": "/english-fot-testers/static/js/main.951798ea.chunk.js",
-    "main.js.map": "/english-fot-testers/static/js/main.951798ea.chunk.js.map",
-    "runtime-main.js": "/english-fot-testers/static/js/runtime-main.70a9ce1e.js",
-    "runtime-main.js.map": "/english-fot-testers/static/js/runtime-main.70a9ce1e.js.map",
-    "static/js/2.8b8964f0.chunk.js": "/english-fot-testers/static/js/2.8b8964f0.chunk.js",
-    "static/js/2.8b8964f0.chunk.js.map": "/english-fot-testers/static/js/2.8b8964f0.chunk.js.map",
-    "index.html": "/english-fot-testers/index.html",
-    "static/css/main.6b1f1476.chunk.css.map": "/english-fot-testers/static/css/main.6b1f1476.chunk.css.map",
-    "static/js/2.8b8964f0.chunk.js.LICENSE.txt": "/english-fot-testers/static/js/2.8b8964f0.chunk.js.LICENSE.txt",
-    "static/media/2.43a3b8b5.jpg": "/english-fot-testers/static/media/2.43a3b8b5.jpg",
-    "static/media/AudioCallGame.module.scss": "/english-fot-testers/static/media/audiocall.a4a61913.jpg",
-    "static/media/branch.44f4c58f.png": "/english-fot-testers/static/media/branch.44f4c58f.png",
-    "static/media/correct.23d0e138.mp3": "/english-fot-testers/static/media/correct.23d0e138.mp3",
-    "static/media/error.88bbaea7.mp3": "/english-fot-testers/static/media/error.88bbaea7.mp3",
-    "static/media/photo_2021-04-09_11-20-47.2d7e1c32.jpg": "/english-fot-testers/static/media/photo_2021-04-09_11-20-47.2d7e1c32.jpg",
-    "static/media/snake.313dd7c8.svg": "/english-fot-testers/static/media/snake.313dd7c8.svg"
+    "main.css": "/english-for-testers/static/css/main.3ff8e370.chunk.css",
+    "main.js": "/english-for-testers/static/js/main.7b468205.chunk.js",
+    "main.js.map": "/english-for-testers/static/js/main.7b468205.chunk.js.map",
+    "runtime-main.js": "/english-for-testers/static/js/runtime-main.76287641.js",
+    "runtime-main.js.map": "/english-for-testers/static/js/runtime-main.76287641.js.map",
+    "static/js/2.8bfb5318.chunk.js": "/english-for-testers/static/js/2.8bfb5318.chunk.js",
+    "static/js/2.8bfb5318.chunk.js.map": "/english-for-testers/static/js/2.8bfb5318.chunk.js.map",
+    "index.html": "/english-for-testers/index.html",
+    "static/css/main.3ff8e370.chunk.css.map": "/english-for-testers/static/css/main.3ff8e370.chunk.css.map",
+    "static/js/2.8bfb5318.chunk.js.LICENSE.txt": "/english-for-testers/static/js/2.8bfb5318.chunk.js.LICENSE.txt",
+    "static/media/2.43a3b8b5.jpg": "/english-for-testers/static/media/2.43a3b8b5.jpg",
+    "static/media/AudioCallGame.module.scss": "/english-for-testers/static/media/audiocall.a4a61913.jpg",
+    "static/media/branch.44f4c58f.png": "/english-for-testers/static/media/branch.44f4c58f.png",
+    "static/media/correct.23d0e138.mp3": "/english-for-testers/static/media/correct.23d0e138.mp3",
+    "static/media/error.88bbaea7.mp3": "/english-for-testers/static/media/error.88bbaea7.mp3",
+    "static/media/photo_2021-04-09_11-20-47.2d7e1c32.jpg": "/english-for-testers/static/media/photo_2021-04-09_11-20-47.2d7e1c32.jpg",
+    "static/media/snake.313dd7c8.svg": "/english-for-testers/static/media/snake.313dd7c8.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.70a9ce1e.js",
-    "static/js/2.8b8964f0.chunk.js",
-    "static/css/main.6b1f1476.chunk.css",
-    "static/js/main.951798ea.chunk.js"
+    "static/js/runtime-main.76287641.js",
+    "static/js/2.8bfb5318.chunk.js",
+    "static/css/main.3ff8e370.chunk.css",
+    "static/js/main.7b468205.chunk.js"
   ]
 }
