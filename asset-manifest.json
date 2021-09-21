@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/english-fot-testers/static/css/main.32ac6f23.chunk.css",
+    "main.css": "/english-fot-testers/static/css/main.6b1f1476.chunk.css",
     "main.js": "/english-fot-testers/static/js/main.951798ea.chunk.js",
     "main.js.map": "/english-fot-testers/static/js/main.951798ea.chunk.js.map",
     "runtime-main.js": "/english-fot-testers/static/js/runtime-main.70a9ce1e.js",
@@ -8,7 +8,7 @@
     "static/js/2.8b8964f0.chunk.js": "/english-fot-testers/static/js/2.8b8964f0.chunk.js",
     "static/js/2.8b8964f0.chunk.js.map": "/english-fot-testers/static/js/2.8b8964f0.chunk.js.map",
     "index.html": "/english-fot-testers/index.html",
-    "static/css/main.32ac6f23.chunk.css.map": "/english-fot-testers/static/css/main.32ac6f23.chunk.css.map",
+    "static/css/main.6b1f1476.chunk.css.map": "/english-fot-testers/static/css/main.6b1f1476.chunk.css.map",
     "static/js/2.8b8964f0.chunk.js.LICENSE.txt": "/english-fot-testers/static/js/2.8b8964f0.chunk.js.LICENSE.txt",
     "static/media/2.43a3b8b5.jpg": "/english-fot-testers/static/media/2.43a3b8b5.jpg",
     "static/media/AudioCallGame.module.scss": "/english-fot-testers/static/media/audiocall.a4a61913.jpg",
@@ -21,7 +21,7 @@
   "entrypoints": [
     "static/js/runtime-main.70a9ce1e.js",
     "static/js/2.8b8964f0.chunk.js",
-    "static/css/main.32ac6f23.chunk.css",
+    "static/css/main.6b1f1476.chunk.css",
     "static/js/main.951798ea.chunk.js"
   ]
 }
