@@ -138,13 +138,13 @@ export default function VocabularyContent({
   }, [wordsToRender, dispatch]);
 
   useEffect(() => {
-    if (wordsToRender) {
+    if (wordsToRender?.[page]) {
       const totals = {
         success: 0,
         fail: 0,
         learned: 0,
       };
-      wordsToRender[page].forEach(({ optional, difficulty }) => {
+      wordsToRender?.[page]?.forEach(({ optional, difficulty }) => {
         if (
           (optional?.successCounter + optional?.failCounter ||
             difficulty === WORD_HARD) &&
