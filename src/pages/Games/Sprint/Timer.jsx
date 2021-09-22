@@ -1,17 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 const Timer = (props) => {
-  const { isActive, onCountdownFinish, initialTime } = props;
-  const [value, setValue] = useState(initialTime);
-
-  useEffect(() => {
-    const timerID = setTimeout(() => {
-      if (value > 0 && isActive) {
-        setValue(value - 1);
-      }
-    }, 1000);
-    return () => clearTimeout(timerID);
-  }, [value, isActive]);
+  const { isActive, onCountdownFinish, initialTime, value } = props;
 
   useEffect(() => {
     if (value <= 0) {
@@ -19,13 +9,7 @@ const Timer = (props) => {
     }
   }, [onCountdownFinish, value]);
 
-  return (
-    <>
-      {value}
-    </>
-  );
+  return <>{value}</>;
 };
 
 export default Timer;
-
-
